@@ -476,7 +476,7 @@ box-sizing: border-box;
 }
 
 .fondo-pagina {
-  background-image: url('C:/Users/juane/OneDrive/Desktop/frontendcon bd1 - copia (que estoy terminando)/frontend/public/img/fondo.jpg'); /* ✅ cambia la ruta según tu imagen */
+  background-image: url("../public/img/fondo.jpg"); /* ✅ cambia la ruta según tu imagen */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
