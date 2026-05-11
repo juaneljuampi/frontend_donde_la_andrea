@@ -1,4 +1,4 @@
-https://juaneljuampi.github.io/frontend-react/
+
 ruta de pagina
 
 🔧 Funcionalidades principales
