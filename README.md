@@ -49,8 +49,7 @@ git init
 // esto para fusionar las carpetas en caso de conflicto
 git pull origin master --allow-unrelated-histories
 
-git remote add origin https://github.com/juaneljuampi/frontend-react.git
-	              https://github.com/juaneljuampi/backend.git
+git remote add origin
 
 git add .
 
