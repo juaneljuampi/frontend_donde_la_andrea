@@ -11,7 +11,7 @@ function Footer() {
     }
 
     try {
-      const res = await fetch('https://backend-production-fcfc3.up.railway.app/api/suscripciones', {
+      const res = await fetch('https://backend-donde-la-andrea.onrender.com/api/suscripciones', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: correo }), // 👈 clave correcta para tu backend

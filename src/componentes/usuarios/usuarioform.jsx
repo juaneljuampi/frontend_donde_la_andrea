@@ -24,7 +24,7 @@ function UsuarioForm({ usuario, onClose, onActualizar }) {
     e.preventDefault();
 
     try {
-      const res = await fetch(`https://backend-production-fcfc3.up.railway.app/usuarios/${form.id}`, {
+      const res = await fetch(`https://backend-donde-la-andrea.onrender.com/usuarios/${form.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

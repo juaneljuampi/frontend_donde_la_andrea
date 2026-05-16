@@ -48,7 +48,7 @@ function ModalProducto({ producto, show, onClose, onAgregar , disabled}) {
       </Modal.Header>
       <Modal.Body>
         <img
-          src={`https://backend-production-fcfc3.up.railway.app/${producto.imagen}`}
+          src={`https://backend-donde-la-andrea.onrender.com/${producto.imagen}`}
           alt={producto.nombre}
           className="card-img-top img-thumbnail"
           style={{ height: '180px', objectFit: 'cover' }}

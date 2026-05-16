@@ -19,7 +19,7 @@ function Productos({ carrito, setCarrito }) {
   const estaAutenticado = localStorage.getItem('usuarioAutenticado') === 'true'; // ✅ faltaba definir
 
   useEffect(() => {
-    fetch('https://backend-production-fcfc3.up.railway.app/api/productos')
+    fetch('https://backend-donde-la-andrea.onrender.com/api/productos')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -54,7 +54,7 @@ function Productos({ carrito, setCarrito }) {
           <button
             onClick={() => {
               toast.dismiss();
-              window.location.href = 'https://backend-production-fcfc3.up.railway.app/#/login';
+              window.location.href = 'https://backend-donde-la-andrea.onrender.com/#/login';
             }}
             style={{
               marginTop: '8px',

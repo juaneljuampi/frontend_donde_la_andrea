@@ -12,7 +12,7 @@ function Registro() {
 
   const registrarUsuario = async (form) => {
     try {
-      const res = await fetch('https://backend-production-fcfc3.up.railway.app/usuarios/registro', {
+      const res = await fetch('https://backend-donde-la-andrea.onrender.com/usuarios/registro', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

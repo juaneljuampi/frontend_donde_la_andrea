@@ -26,7 +26,7 @@ function Home() {
   const productosPorPagina = 8;
 
   useEffect(() => {
-    fetch('https://backend-production-fcfc3.up.railway.app/api/productos')
+    fetch('https://backend-donde-la-andrea.onrender.com/api/productos')
       .then(res => res.json())
       .then(data => setProductos(data))
       .catch(err => console.error('Error al cargar productos:', err));

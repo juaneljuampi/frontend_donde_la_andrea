@@ -13,7 +13,7 @@ function Usuario() {
   }, []);
 
 const cargarUsuarios = () => {
-  fetch('https://backend-production-fcfc3.up.railway.app/usuarios')
+  fetch('https://backend-donde-la-andrea.onrender.com/usuarios')
     .then(res => {
       if (!res.ok) {
         throw new Error(`Error HTTP: ${res.status}`);
@@ -35,17 +35,17 @@ const cargarUsuarios = () => {
   const handleEditar = (usuario) => setUsuarioEditando(usuario);
 
   const handleEliminar = async (id) => {
-    await fetch(`https://backend-production-fcfc3.up.railway.app/usuarios/${id}`, { method: 'DELETE' });
+    await fetch(`https://backend-donde-la-andrea.onrender.com/usuarios/${id}`, { method: 'DELETE' });
     cargarUsuarios(); //  actualiza la lista después de eliminar
   };
 
   const handleBloquear = async (id) => {
-    await fetch(`https://backend-production-fcfc3.up.railway.app/usuarios/${id}/bloquear`, { method: 'PUT' });
+    await fetch(`https://backend-donde-la-andrea.onrender.com/usuarios/${id}/bloquear`, { method: 'PUT' });
     cargarUsuarios(); //  actualiza la lista
   };
 
   const handleDesbloquear = async (id) => {
-    await fetch(`https://backend-production-fcfc3.up.railway.app/usuarios/${id}/desbloquear`, { method: 'PUT' });
+    await fetch(`https://backend-donde-la-andrea.onrender.com/usuarios/${id}/desbloquear`, { method: 'PUT' });
     cargarUsuarios(); //  actualiza la lista
   };
 

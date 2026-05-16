@@ -26,7 +26,7 @@ function ProductoResultado({ producto, onEditar, onEliminar, onToggleActivo }) {
           <td>${producto.precioUnitario?.toLocaleString('es-CL')}</td>
           <td>{producto.cantidad}</td>
           <td><img
-                src={`https://backend-production-fcfc3.up.railway.app${producto.imagen}`}
+                src={`https://backend-donde-la-andrea.onrender.com${producto.imagen}`}
                 width="50"
                 alt={producto.nombre}
                 className="img-thumbnail"

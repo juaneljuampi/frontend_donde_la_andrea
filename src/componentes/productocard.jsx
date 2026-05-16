@@ -5,7 +5,7 @@ function ProductoCard({ producto, onVer }) {
   return (
     <div className="card h-100 shadow-sm rounded" style={{ backgroundColor: '#e5d4ed', borderRadius: '20px' }}>
       <img
-        src={`https://backend-production-fcfc3.up.railway.app/${producto.imagen}`}
+        src={`https://backend-donde-la-andrea.onrender.com/${producto.imagen}`}
         alt={producto.nombre}
         className="card-img-top img-thumbnail rounded-top"
         style={{ maxWidth: '280px', height: '200px', objectFit: 'cover', backgroundColor: '#000000ff' }}

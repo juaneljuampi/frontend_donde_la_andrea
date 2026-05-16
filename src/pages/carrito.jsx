@@ -94,7 +94,7 @@ const pagar = async () => {
     const totalCompra = productosConSubtotal.reduce((acc, p) => acc + p.subtotal, 0);
 
     // Descontar stock
-    const resStock = await fetch('https://backend-production-fcfc3.up.railway.app/descontar-stock', {
+    const resStock = await fetch('https://backend-donde-la-andrea.onrender.com/descontar-stock', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(productosConSubtotal.map(p => ({
@@ -115,7 +115,7 @@ const pagar = async () => {
       total: totalCompra
     };
 
-    const resCompra = await fetch(`https://backend-production-fcfc3.up.railway.app/api/compras/guardar`, {
+    const resCompra = await fetch(`https://backend-donde-la-andrea.onrender.com/api/compras/guardar`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(compra)

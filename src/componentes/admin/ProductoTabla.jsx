@@ -26,7 +26,7 @@ function ProductoTabla({ productos, onEditar, onEliminar, onToggleActivo }) {
             <td>{p.cantidad}</td>
             <td>
               <img
-                src={`https://backend-production-fcfc3.up.railway.app${p.imagen}`}
+                src={`https://backend-donde-la-andrea.onrender.com${p.imagen}`}
                 width="50"
                 alt={p.nombre}
                 className="img-thumbnail"

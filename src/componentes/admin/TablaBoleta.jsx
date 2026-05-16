@@ -5,7 +5,7 @@ const TablaBoletas = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetch('https://backend-production-fcfc3.up.railway.app/api/boletas')
+    fetch('https://backend-donde-la-andrea.onrender.com/api/boletas')
       .then(res => res.json())
       .then(data => setBoletas(data));
   }, []);

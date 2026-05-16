@@ -25,7 +25,7 @@ function Perfil() {
     }
 
     // 👇 Cargar datos del usuario (incluyendo contraseña)
-    fetch(`https://backend-production-fcfc3.up.railway.app/usuarios/${usuarioId}`)
+    fetch(`https://backend-donde-la-andrea.onrender.com/usuarios/${usuarioId}`)
       .then(res => {
         if (!res.ok) throw new Error('Error al obtener datos');
         return res.json();
@@ -48,7 +48,7 @@ function Perfil() {
       });
 
     // 👇 Cargar compras del usuario
-    fetch(`https://backend-production-fcfc3.up.railway.app/api/compras/${usuarioId}`)
+    fetch(`https://backend-donde-la-andrea.onrender.com/api/compras/${usuarioId}`)
       .then(res => {
         if (!res.ok) throw new Error('Error al obtener compras');
         return res.json();
@@ -70,7 +70,7 @@ function Perfil() {
       return;
     }
 
-    fetch(`https://backend-production-fcfc3.up.railway.app/usuarios/${usuario.id}`, {
+    fetch(`https://backend-donde-la-andrea.onrender.com/usuarios/${usuario.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(usuario)

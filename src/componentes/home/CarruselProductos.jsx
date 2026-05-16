@@ -94,7 +94,7 @@ function CarruselProductos({ productos, verProducto }) {
               {productos.slice(0, 2).map((producto) => (
                 <div key={producto.id} className="carousel-item">
                   <img
-                    src={`https://backend-production-fcfc3.up.railway.app${producto.imagen}`}
+                    src={`https://backend-donde-la-andrea.onrender.com${producto.imagen}`}
                     alt={producto.nombre}
                     className="d-block w-100"
                     style={{ height: '340px', objectFit: 'cover' }}

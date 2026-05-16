@@ -7,7 +7,7 @@ function ProductoCard2({ producto, onVer }) {
     <div className="d-inline-block">
       <div className="card m-3 shadow-sm" style={{ width: '16rem' }}>
         <img
-          src={`https://backend-production-cbae.up.railway.app${producto.imagen}`}
+          src={`https://backend-donde-la-andrea.onrender.com${producto.imagen}`}
           alt={producto.nombre}
           className="card-img-top img-thumbnail"
           style={{ height: '180px', objectFit: 'cover' }}

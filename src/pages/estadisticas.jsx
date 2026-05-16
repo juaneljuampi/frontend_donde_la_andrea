@@ -13,17 +13,17 @@ const Estadisticas = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetch('https://backend-production-fcfc3.up.railway.app/usuarios')
+    fetch('https://backend-donde-la-andrea.onrender.com/usuarios')
       .then(res => res.json())
       .then(data => setUsuarios(data));
 
-    fetch('https://backend-production-fcfc3.up.railway.app/api/productos')
+    fetch('https://backend-donde-la-andrea.onrender.com/api/productos')
       .then(res => res.json())
       .then(data => setProductos(data));
 
 
     // 👇 nuevo: cargar boletas
-    fetch('https://backend-production-fcfc3.up.railway.app/api/boletas')
+    fetch('https://backend-donde-la-andrea.onrender.com/api/boletas')
       .then(res => res.json())
       .then(data => setBoletas(data));
   }, []);

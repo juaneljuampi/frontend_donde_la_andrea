@@ -25,7 +25,7 @@ function AdminPanel() {
   useEffect(() => {
     if (!busquedaId) return;
 
-    fetch(`https://backend-production-fcfc3.up.railway.app/api/productos/${busquedaId}`)
+    fetch(`https://backend-donde-la-andrea.onrender.com/api/productos/${busquedaId}`)
       .then(res => {
         if (!res.ok) throw new Error('Producto no encontrado');
         return res.json();
@@ -41,7 +41,7 @@ function AdminPanel() {
   
 
   const cargarProductos = () => {
-    fetch('https://backend-production-fcfc3.up.railway.app/api/productos')
+    fetch('https://backend-donde-la-andrea.onrender.com/api/productos')
       .then(res => res.json())
       .then(data => setProductos(data))
       .catch(err => {
@@ -51,7 +51,7 @@ function AdminPanel() {
   };
 
   const eliminarProducto = (id) => {
-    fetch(`https://backend-production-fcfc3.up.railway.app/eliminar/${id}`, {
+    fetch(`https://backend-donde-la-andrea.onrender.com/eliminar/${id}`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -65,7 +65,7 @@ function AdminPanel() {
   };
 
   const toggleActivo = (id, estadoActual) => {
-    fetch(`https://backend-production-fcfc3.up.railway.app/api/productos/estado/${id}`, {
+    fetch(`https://backend-donde-la-andrea.onrender.com/api/productos/estado/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ activo: !estadoActual })
@@ -108,8 +108,8 @@ function AdminPanel() {
     }
 
 const url = editandoId
-  ? `https://backend-production-fcfc3.up.railway.app/api/productos/modificar/${editandoId}`
-  : 'https://backend-production-fcfc3.up.railway.app/api/productos/agregar';
+  ? `https://backend-donde-la-andrea.onrender.com/api/productos/modificar/${editandoId}`
+  : 'https://backend-donde-la-andrea.onrender.com/api/productos/agregar';
 
 const method = editandoId ? 'PUT' : 'POST';
 
@@ -128,7 +128,7 @@ fetch(url, {
     cargarProductos();
 
     if (editandoId && productoBuscado && editandoId === productoBuscado.id) {
-      fetch(`https://backend-production-fcfc3.up.railway.app/api/productos/${editandoId}`)
+      fetch(`https://backend-donde-la-andrea.onrender.com/api/productos/${editandoId}`)
         .then(res => res.json())
         .then(data => setProductoBuscado(data))
         .catch(() => setProductoBuscado(null));
@@ -175,7 +175,7 @@ fetch(url, {
     try {
       const nuevoEstado = !estadoActual;
 
-      await fetch(`https://backend-production-fcfc3.up.railway.app/api/productos/estado/${id}`, {
+      await fetch(`https://backend-donde-la-andrea.onrender.com/api/productos/estado/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ activo: nuevoEstado })
@@ -192,7 +192,7 @@ fetch(url, {
   const handleBuscarPorId = (e) => {
     e.preventDefault();
     if (!busquedaId) return;
-    fetch(`https://backend-production-fcfc3.up.railway.app/api/productos/${busquedaId}`)
+    fetch(`https://backend-donde-la-andrea.onrender.com/api/productos/${busquedaId}`)
       .then(res => {
         if (!res.ok) throw new Error('Producto no encontrado');
         return res.json();
