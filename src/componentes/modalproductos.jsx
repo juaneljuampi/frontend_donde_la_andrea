@@ -16,7 +16,7 @@ function ModalProducto({ producto, show, onClose, onAgregar , disabled}) {
           <button
             onClick={() => {
               toast.dismiss();
-              window.location.href = 'https://juaneljuampi.github.io/frontend_donde_la_andrea/#/login';
+              window.location.href = '/login';
             }}
             style={{
               marginTop: '8px',

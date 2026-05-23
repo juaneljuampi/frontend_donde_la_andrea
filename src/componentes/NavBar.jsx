@@ -103,7 +103,7 @@ function Navbar() {
               ) : (
                 <a
                   className="btn btn-primary ms-2 fw-bold"
-                  href="https://juaneljuampi.github.io/frontend_donde_la_andrea/#/login"
+                  href="/login"
                   style={{
                     backgroundColor: '#2a00e4ff',
                     borderColor: '#007bff',
