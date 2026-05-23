@@ -140,8 +140,6 @@ const pagar = async () => {
 
   return (
     <div className="table-responsive">
-      setMostrarModalBoleta(true);
-      setBoleta(boleta);
 
       <RegistroNavbar />
       <CarritoLista
