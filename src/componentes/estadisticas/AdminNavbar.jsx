@@ -35,7 +35,7 @@ const cerrarSesion = () => {
       <i className="bi bi-box-arrow-right me-1" ></i> Cerrar sesión
     </button>
   ) : (
-    <a className="btn btn-primary ms-2 fw-bold" href="/login"
+    <a className="btn btn-primary ms-2 fw-bold" href="https://juaneljuampi.github.io/frontend_donde_la_andrea/#/login"
       style={{ backgroundColor: '#2a00e4ff', borderColor: '#007bff', color: '#fff', fontSize: '1.05rem' }}>
       <i className="bi bi-box-arrow-in-right me-1"></i> Iniciar sesión
     </a>

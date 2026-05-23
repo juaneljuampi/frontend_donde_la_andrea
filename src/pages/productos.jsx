@@ -54,7 +54,7 @@ function Productos({ carrito, setCarrito }) {
           <button
             onClick={() => {
               toast.dismiss();
-              window.location.href = 'https://backend-donde-la-andrea.onrender.com/#/login';
+              window.location.href = 'https://juaneljuampi.github.io/frontend_donde_la_andrea/#/login';
             }}
             style={{
               marginTop: '8px',
