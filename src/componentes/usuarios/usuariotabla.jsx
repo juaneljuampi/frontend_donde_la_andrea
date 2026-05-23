@@ -12,7 +12,7 @@ function UsuarioTabla({ usuarios, onEditar, onEliminar, onBloquear, onDesbloquea
           <th>Nombre</th>
           <th>Comuna</th>
           <th>Dirección</th>
-          <th>Contraseña</th>
+          
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
@@ -25,7 +25,7 @@ function UsuarioTabla({ usuarios, onEditar, onEliminar, onBloquear, onDesbloquea
             <td>{u.nombre}</td>
             <td>{u.comuna}</td>
             <td>{u.direccion}</td>
-            <td>{u.contraseña}</td>
+            
             <td>{u.bloqueado ? 'Bloqueado' : 'Activo'}</td>
             <td>
               <UsuarioAcciones

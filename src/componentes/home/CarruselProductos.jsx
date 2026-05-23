@@ -55,24 +55,6 @@ function CarruselProductos({ productos, verProducto }) {
             </div>
 
             <div className="carousel-inner">
-              {/* 🎥 Video 1 */}
-              <div className="carousel-item active">
-                <video
-                  className="d-block w-100"
-                  style={{ height: '340px', objectFit: 'cover' }}
-                  controls
-                  muted
-                  autoPlay
-                  loop
-                >
-                  <source src={`${process.env.PUBLIC_URL}/video/demo2.mp4`} type="video/mp4" />
-                  
-                </video>
-                <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                  <p>Explora nuestros productos</p>
-                </div>
-              </div>
-
               {/* 🎥 Video 2 */}
               <div className="carousel-item">
                 <video

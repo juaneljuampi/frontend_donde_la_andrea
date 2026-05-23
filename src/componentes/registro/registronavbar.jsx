@@ -53,7 +53,7 @@ const colorBadge = cantidadCarrito >= 10
           <ul className="navbar-nav ms-auto">
                         {/* Ícono de carrito con contador */}
             <li className="nav-item position-relative me-3">
-              <a className="nav-link" href="#/carrito">
+              <a className="nav-link" href="https://juaneljuampi.github.io/frontend_donde_la_andrea/#/carrito">
                 <img
                   src={`${process.env.PUBLIC_URL}/img/carrito.png`}
                   alt="Carrito"
@@ -70,8 +70,8 @@ const colorBadge = cantidadCarrito >= 10
               </a>
             </li>
 
-            <li className="nav-item"><a className="nav-link active fs-5 fw-bold"style={{color:'black'}} href="https://juaneljuampi.github.io/frontend-react/">Inicio</a></li>
-            <li className="nav-item"><a className="nav-link active fs-5 fw-bold"style={{color:'black'}} href="https://juaneljuampi.github.io/frontend-react/#/productos">Productos  </a></li>
+            <li className="nav-item"><a className="nav-link active fs-5 fw-bold"style={{color:'black'}} href="https://juaneljuampi.github.io/frontend_donde_la_andrea/#/">Inicio</a></li>
+            <li className="nav-item"><a className="nav-link active fs-5 fw-bold"style={{color:'black'}} href="https://juaneljuampi.github.io/frontend_donde_la_andrea/#/productos">Productos  </a></li>
             <li className="nav-item"><a className="nav-link active fs-5 fw-bold" href=""></a></li>
 
 
