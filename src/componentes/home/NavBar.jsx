@@ -24,7 +24,7 @@ function Navbar() {
         localStorage.removeItem('usuarioAutenticado');
         localStorage.removeItem('usuarioId');
         alert('Tu sesión ha expirado por tiempo. Debes iniciar sesión nuevamente.');
-        window.location.href = 'https://juaneljuampi.github.io/frontend_donde_la_andrea/#/login';
+        window.location.href = '/login';
       }
     }, tiempoExpiracion);
 
@@ -167,7 +167,7 @@ function Navbar() {
               ) : (
                 <Link
                   className="btn btn-primary ms-2 fw-bold"
-                  to="https://juaneljuampi.github.io/frontend_donde_la_andrea/#/login"
+                  to="/login"
                   style={{
                     backgroundColor: '#2a00e4ff',
                     borderColor: '#007bff',
