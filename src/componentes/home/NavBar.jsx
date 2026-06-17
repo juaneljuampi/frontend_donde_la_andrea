@@ -94,16 +94,20 @@ function Navbar() {
                 )}
               </Link>
             </li>
-
-            <li className="nav-item d-flex align-items-center" style={{ height: '60px' }}>
+         <li className="nav-item d-flex align-items-center" style={{ height: '60px' }}>
               <Link
                 className="nav-link active fs-5 fw-bold p-2"
                 style={{ color: 'black', height: '100%', display: 'flex', alignItems: 'center' }}
-                to="/registro"
+                to="/"
               >
-                Registro
+                Inicio
               </Link>
             </li>
+
+
+            {/* Registro eliminado */}
+
+   
 
             <li className="nav-item d-flex align-items-center" style={{ height: '60px' }}>
               <Link

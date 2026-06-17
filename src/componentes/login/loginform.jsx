@@ -23,9 +23,15 @@ function LoginForm({ onLogin }) {
       return false;
     }
 
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{12,}$/;
-    if (!regex.test(form.contraseña)) {
-      setMensaje("Contraseña inválida: mínimo 12 caracteres, una mayúscula, una minúscula, un número y un símbolo");
+    const falta = [];
+    if (form.contraseña.length < 12) falta.push('mínimo 12 caracteres');
+    if (!/[a-z]/.test(form.contraseña)) falta.push('una letra minúscula');
+    if (!/[A-Z]/.test(form.contraseña)) falta.push('una letra mayúscula');
+    if (!/\d/.test(form.contraseña)) falta.push('un número');
+    if (!/[@$!%*?&]/.test(form.contraseña)) falta.push('un símbolo (@$!%*?&)');
+
+    if (falta.length > 0) {
+      setMensaje('Contraseña inválida: falta ' + falta.join(', '));
       return false;
     }
 
@@ -69,6 +75,11 @@ function LoginForm({ onLogin }) {
         <span>¿No tienes cuenta? </span>
         <Link to="/registro">Regístrate aquí</Link>
       </div>
+      <p className="text-center mt-3">
+  <a href="#/recuperar-password">
+    ¿Olvidaste tu contraseña?
+  </a>
+</p>
     </>
   );
 }

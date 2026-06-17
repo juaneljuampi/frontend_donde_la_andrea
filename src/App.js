@@ -17,7 +17,8 @@ import PerfilMobile from './pages/perfilmobile';
 import LoginMobile from './pages/loginmobile';
 import PagoExitoso from './pages/PagoExitoso';
 import PagoFallido from './pages/PagoFallido';
-import RecuperarPassword from './pages/RecuperarPassword';
+import RecuperarPassword from "./pages/RecuperarPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const [carrito, setCarrito] = useState([]);
@@ -41,7 +42,7 @@ function App() {
         <Route path="/pago-exitoso" element={<PagoExitoso />}/>
         <Route path="/pago-fallido" element={<PagoFallido />} />
         <Route path="/recuperar-password" element={<RecuperarPassword />} />
-
+        <Route path="/reset-password" element={<ResetPassword />}/>
       </Routes>
     </Router>
   );
