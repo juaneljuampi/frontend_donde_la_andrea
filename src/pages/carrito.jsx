@@ -57,86 +57,45 @@ function Carrito() {
     const nuevoTotal = lista.reduce((acc, p) => acc + p.precioUnitario, 0);
     setTotal(nuevoTotal);
   };
-
 const pagar = async () => {
   try {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const usuarioId = localStorage.getItem('usuarioId');
 
-    if (!usuarioId) {
-      alert("Debes iniciar sesión para realizar la compra.");
-      navigate('/login');
-      return;
-    }
+    const total = productos.reduce(
+      (acc, p) => acc + p.precioUnitario,
+      0
+    );
 
-    // 🔁 Agrupar productos por id y sumar cantidades
-    const productosAgrupados = carrito.reduce((acc, prod) => {
-      const existente = acc.find(p => p.productoId === prod.id);
-      if (existente) {
-        existente.cantidad += 1;
-      } else {
-        acc.push({
-          productoId: prod.id,
-          nombre: prod.nombre,
-          cantidad: 1,
-          precio: prod.precioUnitario
-        });
+    const response = await fetch(
+      `https://backend-donde-la-andrea.onrender.com/api/pagos/crear?monto=${total}`,
+      {
+        method: "POST"
       }
-      return acc;
-    }, []);
+    );
 
-    // ✅ Ahora sí puedes usar productosAgrupados
-    const productosConSubtotal = productosAgrupados.map(p => ({
-      ...p,
-      subtotal: p.precio * p.cantidad
-    }));
+    const data = await response.json();
 
-    const totalCompra = productosConSubtotal.reduce((acc, p) => acc + p.subtotal, 0);
+    console.log(data);
 
-    // Descontar stock
-    const resStock = await fetch('https://backend-donde-la-andrea.onrender.com/descontar-stock', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(productosConSubtotal.map(p => ({
-        id: p.productoId,
-        cantidad: p.cantidad
-      })))
-    });
+    // Crear formulario para enviar token a Transbank
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = data.url;
 
-    if (!resStock.ok) {
-      const errorText = await resStock.text();
-      throw new Error("Error al descontar stock: " + errorText);
-    }
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "token_ws";
+    input.value = data.token;
 
-    // Guardar compra
-    const compra = {
-      usuario: { id: parseInt(usuarioId) },
-      productos: productosConSubtotal,
-      total: totalCompra
-    };
+    form.appendChild(input);
+    document.body.appendChild(form);
 
-    const resCompra = await fetch(`https://backend-donde-la-andrea.onrender.com/api/compras/guardar`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(compra)
-    });
+    form.submit();
 
-    if (!resCompra.ok) {
-      const errorText = await resCompra.text();
-      throw new Error("Error al guardar compra: " + errorText);
-    }
-
-    alert("¡Gracias por tu compra!");
-    localStorage.removeItem('carrito');
-    setProductos([]);
-    setTotal(0);
-    navigate('/');
   } catch (error) {
-    console.error("Error al pagar:", error);
-    alert("Ocurrió un error al procesar la compra: " + error.message);
+    console.error(error);
+    alert("Error al iniciar pago");
   }
 };
-
 
   return (
     <div className="table-responsive">

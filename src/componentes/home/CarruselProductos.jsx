@@ -37,26 +37,11 @@ function CarruselProductos({ productos, verProducto }) {
                 aria-current="true"
                 aria-label="Video demo 1"
               ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselProductos"
-                data-bs-slide-to="1"
-                aria-label="Video demo 2"
-              ></button>
-              {productos.slice(0, 2).map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  data-bs-target="#carouselProductos"
-                  data-bs-slide-to={i + 2}
-                  aria-label={`Slide ${i + 3}`}
-                ></button>
-              ))}
             </div>
 
             <div className="carousel-inner">
-              {/* 🎥 Video 2 */}
-              <div className="carousel-item">
+              {/* 🎥 Video (único slide activo) */}
+              <div className="carousel-item active">
                 <video
                   className="d-block w-100"
                   style={{ height: '340px', objectFit: 'cover' }}
@@ -71,29 +56,7 @@ function CarruselProductos({ productos, verProducto }) {
                   <p>Explora nuestros productos</p>
                 </div>
               </div>
-
-              {/* 🖼️ Productos */}
-              {productos.slice(0, 2).map((producto) => (
-                <div key={producto.id} className="carousel-item">
-                  <img
-                    src={`https://backend-donde-la-andrea.onrender.com${producto.imagen}`}
-                    alt={producto.nombre}
-                    className="d-block w-100"
-                    style={{ height: '340px', objectFit: 'cover' }}
-                  />
-                  <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                    <h5>{producto.nombre}</h5>
-                    <p>{producto.descripcion}</p>
-                    <button
-                      className="btn btn-primary btn-sm"
-                      style={{ backgroundColor: '#0d00fdff', borderRadius: '20px', fontWeight: 'bold' }}
-                      onClick={() => verProducto(producto)}
-                    >
-                      Ver producto
-                    </button>
-                  </div>
-                </div>
-              ))}
+              {/* No mostrar otros slides, pero mantener funcionalidad de carrusel */}
             </div>
 
             {/* ⏪⏩ Controles */}
