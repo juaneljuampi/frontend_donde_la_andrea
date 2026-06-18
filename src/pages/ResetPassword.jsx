@@ -79,7 +79,7 @@ export default function ResetPassword() {
           }
           return s - 1;
         });
-      }, 8000);
+      }, 1000);
 
     } catch (error) {
       setMensaje(error.message);
@@ -156,6 +156,11 @@ export default function ResetPassword() {
         {mensaje && (
           <div className="alert alert-info mt-3">
             {mensaje}
+            {segundos > 0 && (
+              <div className="mt-1">
+                Redirigiendo en {segundos} segundo{segundos !== 1 ? "s" : ""}...
+              </div>
+            )}
           </div>
         )}
 
