@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ResetPassword() {
@@ -12,13 +12,41 @@ export default function ResetPassword() {
   const [passwordNueva, setPasswordNueva] = useState("");
   const [confirmarPassword, setConfirmarPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [faltanRequisitos, setFaltanRequisitos] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [segundos, setSegundos] = useState(0);
+  const intervaloRef = useRef(null);
+
+  const evaluarPassword = (password) => {
+    const faltan = [];
+
+    if (password.length < 8) faltan.push("mínimo 8 caracteres");
+    if (!/[A-Z]/.test(password)) faltan.push("una mayúscula");
+    if (!/[a-z]/.test(password)) faltan.push("una minúscula");
+    if (!/[0-9]/.test(password)) faltan.push("un número");
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) faltan.push("un carácter especial");
+
+    setFaltanRequisitos(faltan);
+    return faltan;
+  };
+
+  useEffect(() => {
+    return () => {
+      if (intervaloRef.current) clearInterval(intervaloRef.current);
+    };
+  }, []);
 
   const cambiarPassword = async (e) => {
     e.preventDefault();
 
     if (passwordNueva !== confirmarPassword) {
       setMensaje("Las contraseñas no coinciden");
+      return;
+    }
+
+    const faltan = evaluarPassword(passwordNueva);
+    if (faltan.length > 0) {
+      setMensaje(`La contraseña debe tener: ${faltan.join(", ")}`);
       return;
     }
 
@@ -38,11 +66,20 @@ export default function ResetPassword() {
         throw new Error(data);
       }
 
+      // Iniciar contador de 8 segundos antes de redirigir
+      setSegundos(8);
       setMensaje("✅ Contraseña actualizada correctamente. Redirigiendo al login...");
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      intervaloRef.current = setInterval(() => {
+        setSegundos((s) => {
+          if (s <= 1) {
+            clearInterval(intervaloRef.current);
+            navigate("/login");
+            return 0;
+          }
+          return s - 1;
+        });
+      }, 8000);
 
     } catch (error) {
       setMensaje(error.message);
@@ -74,11 +111,18 @@ export default function ResetPassword() {
               type="password"
               className="form-control"
               value={passwordNueva}
-              onChange={(e) =>
-                setPasswordNueva(e.target.value)
-              }
+              onChange={(e) => {
+                const valor = e.target.value;
+                setPasswordNueva(valor);
+                evaluarPassword(valor);
+              }}
               required
             />
+            {faltanRequisitos.length > 0 && (
+              <div className="form-text text-danger mt-1">
+                Faltan: {faltanRequisitos.join(", ")}
+              </div>
+            )}
           </div>
 
           <div className="mb-3">
@@ -100,6 +144,7 @@ export default function ResetPassword() {
           <button
             className="btn btn-success w-100"
             disabled={loading}
+            style={{ backgroundColor: "#198754", borderColor: "#198754", color: "#fff" }}
           >
             {loading
               ? "Actualizando..."
