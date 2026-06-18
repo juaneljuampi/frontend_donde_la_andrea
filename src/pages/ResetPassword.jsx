@@ -2,31 +2,31 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ResetPassword() {
+
   const navigate = useNavigate();
 
-  const [token, setToken] = useState("");
+  // Obtiene el token desde la URL:
+  // #/reset-password?token=xxxx
+  const token = window.location.hash.split("token=")[1];
+
   const [passwordNueva, setPasswordNueva] = useState("");
+  const [confirmarPassword, setConfirmarPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const cambiarPassword = async (e) => {
     e.preventDefault();
 
-    // Validar contraseña
-    const falta = [];
-    if (passwordNueva.length < 12) falta.push('mínimo 12 caracteres');
-    if (!/[a-z]/.test(passwordNueva)) falta.push('una letra minúscula');
-    if (!/[A-Z]/.test(passwordNueva)) falta.push('una letra mayúscula');
-    if (!/\d/.test(passwordNueva)) falta.push('un número');
-    if (!/[@$!%*?&]/.test(passwordNueva)) falta.push('un símbolo (@$!%*?&)');
-
-    if (falta.length > 0) {
-      setMensaje('Contraseña inválida: falta ' + falta.join(', '));
+    if (passwordNueva !== confirmarPassword) {
+      setMensaje("Las contraseñas no coinciden");
       return;
     }
 
     try {
+      setLoading(true);
+
       const response = await fetch(
-        `https://backend-donde-la-andrea.onrender.com/usuarios/reset-password?token=${token}&passwordNueva=${passwordNueva}`,
+        `https://backend-donde-la-andrea.onrender.com/usuarios/reset-password?token=${token}&passwordNueva=${encodeURIComponent(passwordNueva)}`,
         {
           method: "POST",
         }
@@ -38,7 +38,7 @@ export default function ResetPassword() {
         throw new Error(data);
       }
 
-      setMensaje(data);
+      setMensaje("✅ Contraseña actualizada correctamente. Redirigiendo al login...");
 
       setTimeout(() => {
         navigate("/login");
@@ -46,30 +46,24 @@ export default function ResetPassword() {
 
     } catch (error) {
       setMensaje(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="container mt-5">
-      <div className="card p-4 mx-auto" style={{ maxWidth: "500px" }}>
+
+      <div
+        className="card p-4 mx-auto shadow"
+        style={{ maxWidth: "500px" }}
+      >
+
         <h2 className="text-center mb-4">
           Nueva Contraseña
         </h2>
 
         <form onSubmit={cambiarPassword}>
-          <div className="mb-3">
-            <label className="form-label">
-              Token
-            </label>
-
-            <input
-              type="text"
-              className="form-control"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              required
-            />
-          </div>
 
           <div className="mb-3">
             <label className="form-label">
@@ -80,17 +74,38 @@ export default function ResetPassword() {
               type="password"
               className="form-control"
               value={passwordNueva}
-              onChange={(e) => setPasswordNueva(e.target.value)}
+              onChange={(e) =>
+                setPasswordNueva(e.target.value)
+              }
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">
+              Confirmar Contraseña
+            </label>
+
+            <input
+              type="password"
+              className="form-control"
+              value={confirmarPassword}
+              onChange={(e) =>
+                setConfirmarPassword(e.target.value)
+              }
               required
             />
           </div>
 
           <button
-            className="btn w-100 text-white"
-            style={{ backgroundColor: "#198754", borderColor: "#198754" }}
+            className="btn btn-success w-100"
+            disabled={loading}
           >
-            Cambiar Contraseña
+            {loading
+              ? "Actualizando..."
+              : "Cambiar Contraseña"}
           </button>
+
         </form>
 
         {mensaje && (
@@ -98,7 +113,9 @@ export default function ResetPassword() {
             {mensaje}
           </div>
         )}
+
       </div>
+
     </div>
   );
 }

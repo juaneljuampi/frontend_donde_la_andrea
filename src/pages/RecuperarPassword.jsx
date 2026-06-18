@@ -1,97 +1,93 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function RecuperarPassword() {
-	const [email, setEmail] = useState("");
-	const [mensaje, setMensaje] = useState("");
-	const [loading, setLoading] = useState(false);
-	const [seconds, setSeconds] = useState(0);
-	const [countdownActive, setCountdownActive] = useState(false);
-	const [intervalId, setIntervalId] = useState(null);
+  const [email, setEmail] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [loading, setLoading] = useState(false);
 
-	const recuperarPassword = async (e) => {
-		e.preventDefault();
+  const recuperarPassword = async (e) => {
+    e.preventDefault();
 
-		try {
-			setLoading(true);
+    try {
+      setLoading(true);
 
-			const response = await fetch(
-				`https://backend-donde-la-andrea.onrender.com/usuarios/recuperar?email=${email}`,
-				{
-					method: "POST",
-				}
-			);
+      const response = await fetch(
+        `https://backend-donde-la-andrea.onrender.com/usuarios/recuperar?email=${email}`,
+        {
+          method: "POST",
+        }
+      );
 
-			const data = await response.text();
+      const token = await response.text();
 
-			if (!response.ok) {
-				throw new Error(data);
-			}
+      if (!response.ok) {
+        throw new Error(token);
+      }
 
-			setMensaje(
-				`Token generado correctamente. Copia este token para el siguiente paso: ${data}`
-			);
-			// iniciar contador de 10 segundos y redirigir cuando llegue a 0
-			setSeconds(10);
-			setCountdownActive(true);
-			const id = setInterval(() => {
-				setSeconds((s) => {
-					if (s <= 1) {
-						clearInterval(id);
-						window.location.href = `#/reset-password?token=${data}`;
-						return 0;
-					}
-					return s - 1;
-				});
-			}, 1000);
-			setIntervalId(id);
-		} catch (error) {
-			setMensaje(error.message);
-		} finally {
-			setLoading(false);
-		}
-	};
+      const resetLink =
+        `https://juaneljuampi.github.io/frontend_donde_la_andrea/#/reset-password?token=${token}`;
 
-	// limpiar intervalo si el componente se desmonta
-	React.useEffect(() => {
-		return () => {
-			if (intervalId) clearInterval(intervalId);
-		};
-	}, [intervalId]);
+      await emailjs.send(
+        "service_pqbc1uq",
+        "template_7lfo244",
+        {
+          email: email,
+          reset_link: resetLink,
+          name: "Cliente",
+        },
+        "a5mkoAXJ5rvokq7db"
+      );
 
-	return (
-		<div className="container mt-5">
-			<div className="card p-4 mx-auto" style={{ maxWidth: "500px" }}>
-				<h2 className="text-center mb-4">Recuperar Contraseña</h2>
+      setMensaje(
+        "Correo enviado correctamente. Revisa tu bandeja de entrada."
+      );
+    } catch (error) {
+      setMensaje("Error: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-				<form onSubmit={recuperarPassword}>
-					<div className="mb-3">
-						<label className="form-label">Correo Electrónico</label>
-						<input
-							type="email"
-							className="form-control"
-							placeholder="correo@gmail.com"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-						/>
-					</div>
+  return (
+    <div className="container mt-5">
+      <div className="card p-4 mx-auto" style={{ maxWidth: "500px" }}>
+        <h2 className="text-center mb-4">
+          Recuperar Contraseña
+        </h2>
 
-					<button
-						className="btn w-100 text-white"
-						style={{ backgroundColor: "#198754", borderColor: "#198754" }}
-						disabled={loading}
-					>
-						{loading ? "Generando..." : "Recuperar Contraseña"}
-					</button>
-				</form>
+        <form onSubmit={recuperarPassword}>
+          <div className="mb-3">
+            <label className="form-label">
+              Correo Electrónico
+            </label>
 
-				{mensaje && <div className="alert alert-info mt-3">{mensaje}</div>}
-				{countdownActive && (
-					<div className="alert alert-secondary mt-2">
-						Redirigiendo en {seconds} segundo{seconds !== 1 ? "s" : ""}...
-					</div>
-				)}
-			</div>
-		</div>
-	);
+            <input
+              type="email"
+              className="form-control"
+              placeholder="correo@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="btn w-100"
+            style={{ backgroundColor: '#0d6efd', color: '#ffffff', border: 'none' }}
+            disabled={loading}
+          >
+            {loading ? 'Enviando...' : 'Recuperar Contraseña'}
+          </button>
+        </form>
+
+        {mensaje && (
+          <div className="alert alert-info mt-3">
+            {mensaje}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
