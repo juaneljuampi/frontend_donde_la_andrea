@@ -31,8 +31,8 @@ function Footer() {
   };
 
   return (
-    <div className="theme-dani">
-      <footer className="py-4 mt-5">
+    <div className="theme-dani" style={{ color: 'black' }}>
+      <footer className="py-4 mt-5" style={{ color: 'black' }}>
         <div className="text-center">
           <h4>¡Únete a la comunidad de Natura!</h4>
           <p>Recibe ofertas exclusivas y novedades directamente en tu correo.</p>
@@ -44,20 +44,30 @@ function Footer() {
               value={correo}
               onChange={(e) => setCorreo(e.target.value)}
             />
-            <button className="btn btn-primary" type="button" onClick={handleSuscribir}>
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={handleSuscribir}
+              style={{ backgroundColor: '#0d6efd', borderColor: '#0d6efd' }}
+            >
               Suscribirse
             </button>
           </div>
           <h4>Datos de contacto</h4>
           <p>
             Natura:{' '}
-            <a href="https://www.natura.cl/consultoria/janni" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.natura.cl/consultoria/janni"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'black' }}
+            >
               www.natura.cl/consultoria/janni
             </a>
           </p>
           <p>
             Instagram:{' '}
-            <a href="https://www.instagram.com/donde_laandrea/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/donde_laandrea/" target="_blank" rel="noopener noreferrer" style={{ color: 'black' }}>
               <i className="fab fa-instagram"></i> @donde_laandrea
             </a>
           </p>

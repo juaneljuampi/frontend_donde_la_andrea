@@ -17,7 +17,7 @@ body {
   color: #3e3a35; /* Un tono oscuro cálido para legibilidad */
 }
 .page {
-  --card: #ffffff;
+  --card: #f0dbdb;
   --line: var(--brand-eucalyptus); /* Eucalyptus para bordes */
   --muted: #6b665f;
   --primary: var(--brand-clay); /* Clay como primario */
